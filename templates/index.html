@@ -3,11 +3,15 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
+    {% load socialaccount %}
     {% if user.is_authenticated %}
         <p>Olá {{ user.username }}</p>
         <a href="{% url 'account_logout' %}">Logout</a>
     {% else %}
         <a href="{% url 'account_login' %}">Login</a>
+        <br>
         <a href="{% url 'account_signup' %}">Sign in</a>
+        <br>
+        <a href="{% provider_login_url 'google' %}">Login com Google</a>
     {% endif %}
 {% endblock content %}
